@@ -18,15 +18,14 @@ def input_error_change(func):
 
 @input_error_change
 def change_contact(args, contacts):
-    # if len (args) == 2:
+
         name, phone = args
         if name in contacts:
             contacts[name] = phone
             return "Phone number updated."
         else:
             raise KeyError
-    # else:
-        # return "Not correct entry"
+
     
 def input_error_add(func):
     def inner(*args):
@@ -39,12 +38,11 @@ def input_error_add(func):
 
 @input_error_add
 def add_contact(args, contacts):
-    # if len (args) == 2:
+
         name, phone = args
         contacts[name] = phone
         return "Contact added"
-    # else:
-        # return "Not correct entry"
+
 
 def input_error_show(func):
     def inner(*args):
@@ -60,14 +58,11 @@ def input_error_show(func):
 
 @input_error_show
 def show_phone (args: list, contacts: dict):
-    # if len (args) == 1:
-        # phone = contacts.get(args[0])
+
         phone = contacts[args[0]]
-        # if phone == None:
-            # return "No such name" 
+
         return phone
-    # else:
-        return "Not correct entry"
+
 
 
 def main():
