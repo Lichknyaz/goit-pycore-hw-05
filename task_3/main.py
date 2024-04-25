@@ -58,26 +58,17 @@ def filter_logs_by_level(logs: list, level: str) -> list :
                 print (f"{entry['date']} {entry['time']} - {entry['message']}" )
      
 
+
 def count_logs_by_level(logs: list) -> dict:
-
-    info_entry= dict(Counter(entry["type"] for entry in logs if entry["type"] == "INFO"))
-    debug_entry = dict(Counter(entry["type"] for entry in logs if entry["type"] == "DEBUG"))
-    error_entry = dict(Counter(entry["type"] for entry in logs if entry["type"] == "ERROR"))
-    warning_entry = dict(Counter(entry["type"] for entry in logs if entry["type"] == "WARNING"))
-
-    logs = []
-    logs.extend([info_entry, debug_entry, error_entry, warning_entry])
-
-    return logs 
+    counts = Counter(entry["type"] for entry in logs)
+    return dict(counts)
 
 
-def display_log_counts(counts: list):
+def display_log_counts(counts: dict):
 
     print(f"Рівень логування | Кількість")
     print("----------------------------")
-    for entry in counts:
-        entry_key =  "".join(map(str, entry.keys()))
-        entry_value = "".join(map(str, entry.values()))
+    for entry_key, entry_value in counts.items():
         print(f"{entry_key :<16s} |   {entry_value}")
 
 
